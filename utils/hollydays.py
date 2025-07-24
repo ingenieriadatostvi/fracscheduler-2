@@ -142,7 +142,8 @@ def regular_hollydays_dic(
     semana_santa = sabado_santo(current_year)
     easter = easter_saturday(current_year)
     new = new_year(current_year)
-    chris = christmas(current_year)
+    chris_1 = christmas(current_year)
+    chris_2 = christmas(current_year - 1)
     constitution = constitution_day(current_year)
     benito = benito_juarez_birthday(current_year)
     revolution = mexican_revolution_day(current_year)
@@ -153,20 +154,21 @@ def regular_hollydays_dic(
     work = work_day(current_year)
     independence = independence_day(current_year)
     return {
-        semana_santa : "Semana Santa's weekend",
-        easter : "Easter's weekend",
-        new : "New year",
-        chris : "Christmas",
-        constitution : "Mexican constitution long weekend",
-        benito : "Benito Juárez's long weekend",
-        revolution : "Mexican Revolution long weekend",
-        father: "Father's day",
-        thanks : "Thanksgiving",
-        valentines: "Valentines' day",
-        mother : "Mother's day",
-        work : "Day of the work",
-        independence : "Mexican independence day"
-    }
+    semana_santa : "Holy Week weekend",
+    easter : "Easter weekend",
+    new : "New Year's Day",
+    chris_1 : "Christmas Day",
+    chris_2 : "Christmas Day",
+    constitution : "Constitution Day (Mexico)",
+    benito : "Benito Juárez Day",
+    revolution : "Mexican Revolution Day",
+    father: "Father's Day",
+    thanks : "Thanksgiving Day",
+    valentines: "Valentine's Day",
+    mother : "Mother's Day",
+    work : "Labor Day",
+    independence : "Mexican Independence Day"
+}
 
 def snow_hollydays_dic(
     current_year
@@ -188,23 +190,23 @@ def snow_hollydays_dic(
     independence_3 = independence_day(current_year - 1)
 
     return {
-        semana_santa : "Semana Santa's weekend",
-        easter : "Easter's weekend",
-        new : "New year",
-        chris : "Christmas",
-        constitution : "Mexican constitution long weekend",
-        benito : "Benito Juárez's long weekend",
-        revolution : "Mexican Revolution long weekend",
-        father: "Father's day",
-        thanks : "Thanksgiving",
-        valentines: "Valentines' day",
-        mother : "Mother's day",
-        work : "Day of the work",
-        independence_1 : "Mexican independence day",
-        independence_2 : "Mexican independence day",
-        independence_3 : "Mexican independence day"
+    semana_santa : "Holy Week weekend",
+    easter : "Easter weekend",
+    new : "New Year's Day",
+    chris : "Christmas Day",
+    constitution : "Constitution Day (Mexico)",
+    benito : "Benito Juárez Day",
+    revolution : "Mexican Revolution Day",
+    father: "Father's Day",
+    thanks : "Thanksgiving Day",
+    valentines: "Valentine's Day",
+    mother : "Mother's Day",
+    work : "Labor Day",
+    independence_1 : "Mexican Independence Day",
+    independence_2 : "Mexican Independence Day",
+    independence_3 : "Mexican Independence Day"
+}
 
-    }
 
 # ======== Test Block ========
 
