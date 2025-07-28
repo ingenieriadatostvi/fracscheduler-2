@@ -154,14 +154,14 @@ def regular_hollydays_dic(
     work = work_day(current_year)
     independence = independence_day(current_year)
     return {
-    semana_santa : "Holy Week weekend",
-    easter : "Easter weekend",
+    semana_santa : "Holy Week Weekend",
+    easter : "Easter Weekend",
     new : "New Year's Day",
     chris_1 : "Christmas Day",
     chris_2 : "Christmas Day",
-    constitution : "Constitution Day (Mexico)",
-    benito : "Benito Juárez Day",
-    revolution : "Mexican Revolution Day",
+    constitution : "Mexican Constitution Weekend",
+    benito : "Benito Juárez Weekend",
+    revolution : "Mexican Revolution Weekend",
     father: "Father's Day",
     thanks : "Thanksgiving Day",
     valentines: "Valentine's Day",
@@ -190,13 +190,13 @@ def snow_hollydays_dic(
     independence_3 = independence_day(current_year - 1)
 
     return {
-    semana_santa : "Holy Week weekend",
-    easter : "Easter weekend",
+    semana_santa : "Holy Week Weekend",
+    easter : "Easter Weekend",
     new : "New Year's Day",
     chris : "Christmas Day",
-    constitution : "Constitution Day (Mexico)",
-    benito : "Benito Juárez Day",
-    revolution : "Mexican Revolution Day",
+    constitution : "Mexican Constitution Weekend",
+    benito : "Benito Juárez Weekend",
+    revolution : "Mexican Revolution Weekend",
     father: "Father's Day",
     thanks : "Thanksgiving Day",
     valentines: "Valentine's Day",
@@ -206,7 +206,6 @@ def snow_hollydays_dic(
     independence_2 : "Mexican Independence Day",
     independence_3 : "Mexican Independence Day"
 }
-
 
 # ======== Test Block ========
 
