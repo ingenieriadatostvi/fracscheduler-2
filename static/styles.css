@@ -251,7 +251,7 @@ td.unfractional {
 
 /* Tooltip */
 .tooltip {
-  position: absolute;
+  position: fixed !important;
   background: #333;
   color: white;
   padding: 5px 8px;
@@ -261,12 +261,14 @@ td.unfractional {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: translate(-50%, -120%);
-  z-index: 10;
+  z-index: 9999;
   transition: opacity 0.2s ease-in-out;
-  max-width: 200px;
+  max-width: 300x;
   word-wrap: break-word;
+  user-select: none;
+  transform: translate(0, 0); /* Se actualiza desde JS */
 }
+
 
 
 .date-circle[data-tooltip]:hover::before {
