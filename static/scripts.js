@@ -27,10 +27,14 @@ window.addEventListener('DOMContentLoaded', () => {
         el.appendChild(tooltip);
 
         el.addEventListener('mouseenter', () => {
+            tooltip.style.visibility = 'visible';
             tooltip.style.opacity = '1';
         });
         el.addEventListener('mouseleave', () => {
             tooltip.style.opacity = '0';
+            setTimeout(() => {
+                tooltip.style.visibility = 'hidden';
+            }, 200);
         });
     });
 });
