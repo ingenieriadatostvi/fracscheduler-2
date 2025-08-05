@@ -76,7 +76,7 @@ table {
 
 /* Cabecera de tabla */
 thead th {
-  background-color: #34495e;
+  background-color: #1c5980;
   color: white;
   font-weight: 700;
   font-size: 14px;
@@ -106,18 +106,38 @@ td:not(.empty):hover .date-circle {
   box-shadow: 0 0 8px rgba(41,128,185,0.4);
 }
 
-/* Selector de fracciones */
+/* Selector de fracciones (oculto por defecto) */
+.fraction-section {
+  margin-top: 20px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ecf0f1;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 18px;
+  display: none; /* oculto inicialmente */
+  flex-direction: column;
+  align-items: center;
+}
+
+.fraction-section.active {
+  display: flex; /* muestra cuando activo */
+}
+
+/* Fraction selector interno */
 .fraction-selector {
   display: flex;
   flex-direction: column;
   font-size: 18px;
-  margin-top: 20px;
   align-items: center;
-  background: #ecf0f1;
-  padding: 15px;
-  border-radius: 8px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
 }
 
+/* Container de fracciones */
 .fraction-container {
   display: flex;
   flex-wrap: wrap;
@@ -222,6 +242,7 @@ td.unfractional {
   vertical-align: middle;
   box-sizing: border-box;
   position: relative;
+  z-index: 20; /* arriba de otros elementos */
 }
 
 /* Contenedor para fechas con borde */
@@ -232,6 +253,8 @@ td.unfractional {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  position: relative;
+  z-index: 10;
 }
 
 /* Borde para festivos */
@@ -248,7 +271,6 @@ td.unfractional {
   font-family: 'Libre Baskerville', serif;
 }
 
-
 /* Tooltip */
 .tooltip {
   position: fixed !important;
@@ -261,16 +283,15 @@ td.unfractional {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 9999; /* arriba de todo */
   transition: opacity 0.2s ease-in-out;
-  max-width: 300x;
+  max-width: 300px;
   word-wrap: break-word;
   user-select: none;
   transform: translate(0, 0); /* Se actualiza desde JS */
 }
 
-
-
+/* Flecha del tooltip */
 .date-circle[data-tooltip]:hover::before {
   content: "";
   position: absolute;
@@ -283,21 +304,87 @@ td.unfractional {
   pointer-events: none;
   opacity: 1;
   transition: opacity 0.3s;
-  z-index: 100;
+  z-index: 10000; /* muy arriba */
 }
 
-/* Responsive grid para calendario */
-@media (max-width: 900px) {
-  .calendar {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* Botón hamburguesa fijo arriba izquierda */
+#hamburger-btn {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  width: 30px;
+  height: 24px;
+  cursor: pointer;
+  z-index: 11000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-@media (max-width: 600px) {
-  .calendar {
-    grid-template-columns: 1fr;
-  }
-  .month {
-    max-width: 100%;
-  }
+#hamburger-btn span {
+  display: block;
+  height: 4px;
+  background-color: #2980b9;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+/* Sidebar lateral */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: -320px; /* oculto fuera de pantalla */
+  width: 300px;
+  height: 100vh;
+  background: #ecf0f1;
+  box-shadow: 4px 0 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  box-sizing: border-box;
+  transition: left 0.3s ease;
+  z-index: 10999;
+  overflow-y: auto;
+}
+
+/* Sidebar visible */
+#sidebar.active {
+  left: 0;
+}
+
+/* Estilo de la sección dentro del sidebar */
+#sidebar fieldset.fraction-selector {
+  margin-top: 0;
+  font-size: 18px;
+  align-items: flex-start;
+  height: 100%;
+}
+
+/* Ajustar el container de fracciones para vertical */
+#sidebar .fraction-container {
+  flex-direction: column;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+/* Cuando el sidebar está activo, empuja el contenido principal (opcional) */
+body.sidebar-open {
+  margin-left: 300px;
+  transition: margin-left 0.3s ease;
+}
+
+/* Ocultar la sección horizontal original */
+.fraction-selector-original {
+  display: none;
+}
+
+/* Opcional: cambio visual en el botón hamburguesa al activarse */
+#hamburger-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+#hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+#hamburger-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
