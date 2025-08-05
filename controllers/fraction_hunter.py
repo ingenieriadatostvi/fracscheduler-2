@@ -27,10 +27,10 @@ def hunt_fraction():
         try:
             wish = datetime.strptime(date_str, "%Y-%m-%d").date()
         except ValueError:
-            error_message = "Formato de fecha inválido"
+            error_message = "Invalid wishful date"
             wish          = date.today()
     else:
-        error_message = "No se proporcionó ninguna fecha"
+        error_message = "No wishful date provided"
         wish          = date.today()
 
     # Parámetros del apartamento
