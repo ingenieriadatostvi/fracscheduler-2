@@ -3,42 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <title>Fractional Calendar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Inter&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Inter&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='styles.css') }}"
+  />
 </head>
 <body>
   <h1>FracScheduler</h1>
 
   <!-- Botón hamburguesa fijo arriba izquierda -->
-  <div id="hamburger-btn" aria-label="Toggle menu" role="button" tabindex="0">
+  <div
+    id="hamburger-btn"
+    aria-label="Toggle menu"
+    role="button"
+    tabindex="0"
+  >
     <span></span>
     <span></span>
     <span></span>
   </div>
 
+  <!-- Tooltip de error -->
   {% if error_message %}
-    <div id="floating-error" class="floating-error" data-message="{{ error_message }}"></div>
+    <div
+      id="floating-error"
+      class="floating-error"
+      data-message="{{ error_message }}"
+    ></div>
   {% endif %}
 
   <form method="get" action="/">
     <label for="year">Year:</label>
-    <input type="number" id="year" name="year" value="{{ year }}" class="form-button" />
+    <input
+      type="number"
+      id="year"
+      name="year"
+      value="{{ year }}"
+      class="form-button"
+    />
 
     <label for="apartament">Apartament:</label>
-    <select id="apartament" name="apartament" class="form-button">
+    <select
+      id="apartament"
+      name="apartament"
+      class="form-button"
+    >
       {% for a in available_apartaments %}
-        <option value="{{ a }}" {% if apartament == a %}selected{% endif %}>{{ a }}</option>
+        <option
+          value="{{ a }}"
+          {% if apartament == a %}selected{% endif %}
+        >
+          {{ a }}
+        </option>
       {% endfor %}
     </select>
 
     <!-- Sidebar lateral oculto por defecto -->
-    <aside id="sidebar" aria-label="Select fractions to paint">
+    <aside
+      id="sidebar"
+      aria-label="Select fractions to paint"
+    >
       <fieldset class="fraction-selector">
         <legend>Select fractions to paint:</legend>
         <div class="fraction-container">
           {% for i in [1,2,3,4,5,6,7,0] %}
             <div class="fraction-item">
-              <div class="fraction-color" style="background-color: {{ fraction_colors[i] }};"></div>
+              <div
+                class="fraction-color"
+                style="background-color: {{ fraction_colors[i] }};"
+              ></div>
               <input
                 type="checkbox"
                 id="fraction_{{ i }}"
@@ -46,7 +83,9 @@
                 value="{{ i }}"
                 {% if i in selected_fractions %}checked{% endif %}
               />
-              <label for="fraction_{{ i }}">Fraction {{ 8 if i == 0 else i }}</label>
+              <label for="fraction_{{ i }}">
+                Fraction {{ 8 if i == 0 else i }}
+              </label>
             </div>
           {% endfor %}
           <div class="fraction-item">
@@ -57,7 +96,9 @@
               value="unfractional"
               {% if 'unfractional' in selected_fractions %}checked{% endif %}
             />
-            <label for="fraction_unfractional">Unfractioned Weeks</label>
+            <label for="fraction_unfractional">
+              Unfractioned Weeks
+            </label>
           </div>
           <div class="fraction-item">
             <input
@@ -89,7 +130,10 @@
       <div class="fraction-container">
         {% for i in [1,2,3,4,5,6,7,0] %}
           <div class="fraction-item">
-            <div class="fraction-color" style="background-color: {{ fraction_colors[i] }};"></div>
+            <div
+              class="fraction-color"
+              style="background-color: {{ fraction_colors[i] }};"
+            ></div>
             <input
               type="checkbox"
               id="fraction_orig_{{ i }}"
@@ -97,7 +141,9 @@
               value="{{ i }}"
               {% if i in selected_fractions %}checked{% endif %}
             />
-            <label for="fraction_orig_{{ i }}">Fraction {{ 8 if i == 0 else i }}</label>
+            <label for="fraction_orig_{{ i }}">
+              Fraction {{ 8 if i == 0 else i }}
+            </label>
           </div>
         {% endfor %}
         <div class="fraction-item">
@@ -108,7 +154,9 @@
             value="unfractional"
             {% if 'unfractional' in selected_fractions %}checked{% endif %}
           />
-          <label for="fraction_unfractional_orig">Unfractioned Weeks</label>
+          <label for="fraction_unfractional_orig">
+            Unfractioned Weeks
+          </label>
         </div>
         <div class="fraction-item">
           <input
@@ -121,7 +169,13 @@
           <label for="fraction_all_orig">All</label>
         </div>
         <div class="fraction-item">
-          <input type="checkbox" id="fraction_none_orig" name="fractions" value="none" onclick="deselectAll()" />
+          <input
+            type="checkbox"
+            id="fraction_none_orig"
+            name="fractions"
+            value="none"
+            onclick="deselectAll()"
+          />
           <label for="fraction_none_orig">None</label>
         </div>
       </div>
@@ -282,7 +336,6 @@
         <p>Looking for some wishful date? Try with:</p>
         <form method="get" action="/hunt_fraction">
           <input type="hidden" name="apartament" value="{{ apartament }}" />
-          <input type="hidden" name="year" value="{{ year }}" />
           {% for f in selected_fractions %}
             <input type="hidden" name="fractions" value="{{ f }}" />
           {% endfor %}
